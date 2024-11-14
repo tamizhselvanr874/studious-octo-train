@@ -7,12 +7,18 @@ import openai
 import io  
 import fitz  # PyMuPDF  
   
-# Azure OpenAI configuration  
-openai.api_key = "783973291a7c4a74a1120133309860c0"  
-openai.api_base = "https://theswedes.openai.azure.com/"  
-openai.api_type = "azure"  
-openai.api_version = "2024-05-01-preview"  
+# Load environment variables  
+AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")  
+AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")  
+OPENAI_API_TYPE = "azure"  
+OPENAI_API_VERSION = "2024-05-01-preview"  
 AZURE_DEPLOYMENT_NAME = "GPT-4-Omni"  
+  
+# Configure OpenAI API  
+openai.api_key = AZURE_OPENAI_API_KEY  
+openai.api_base = AZURE_OPENAI_ENDPOINT  
+openai.api_type = OPENAI_API_TYPE  
+openai.api_version = OPENAI_API_VERSION   
   
 def extract_amendments(doc):  
     amendments = []  
